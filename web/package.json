@@ -1,0 +1,76 @@
+{
+  "name": "readme-web",
+  "version": "0.0.1",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --mode production",
+    "lint": "vue-cli-service lint",
+    "test": "jest"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "core-js": "^3.23.3",
+    "element-ui": "^2.15.13",
+    "vue": "^2.7.14",
+    "vuedraggable": "^2.24.3",
+    "vue-router": "^3.5.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "@types/node": "~16.10.1",
+    "@types/request": "^2.48.4",
+    "@typescript-eslint/parser": "^4.31.1",
+    "@vue/cli-plugin-babel": "~4.5.19",
+    "@vue/cli-plugin-eslint": "~4.5.19",
+    "@vue/cli-service": "~4.5.19",
+    "@vue/test-utils": "^1.2.2",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.1.0",
+    "compression-webpack-plugin": "^5.0.2",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "jest": "^27.0.2",
+    "node-sass": "^6.0.1",
+    "sass-loader": "^10.2.0",
+    "terser-webpack-plugin": "^4.2.3",
+    "ts-jest": "^27.0.2",
+    "ts-loader": "^7.0.4",
+    "typescript": "4.4.3",
+    "vue-jest": "^3.0.7",
+    "vue-template-compiler": "^2.7.8",
+    "webpack": "^4.46.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true,
+      "browser": true,
+      "es6": true,
+      "jest": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "@typescript-eslint/parser",
+      "ecmaFeatures": {
+        "legacyDecorators": true
+      }
+    },
+    "rules": {
+      "no-self-assign": "off",
+      "no-unused-vars": "off",
+      "no-inner-declarations": "off",
+      "no-case-declarations": "off",
+      "vue/no-use-v-if-with-v-for": "off",
+      "vue/require-v-for-key": "off",
+      "vue/no-unused-vars": "off"
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

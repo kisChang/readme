@@ -1,0 +1,18 @@
+1. mysql 运行
+
+docker run -p 3306:3306 --name mysql -v /root/conf:/etc/mysql/conf.d/ -v /root/data/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7
+
+
+2. 启动 服务
+
+# 内存数据库方案 - us
+docker rm -f root && docker pull registry.us-west-1.aliyuncs.com/kischang/selfus:root-v1.0.0 && \
+ docker run -p 80:80 -p 25:25 -p 110:110 --name root -d \
+ -v /root/docker_root:/var/lib/readme/ \
+ registry.us-west-1.aliyuncs.com/kischang/selfus:root-v1.0.0
+
+# 内存数据库方案 - nas
+docker rm -f root && docker pull registry.cn-beijing.aliyuncs.com/kischang/self:root-v1.0.0 && \
+ docker run -p 18080:80 -p 25:25 -p 110:110 --name root -d \
+ -v /root/docker_root:/var/lib/readme/ \
+ registry.cn-beijing.aliyuncs.com/kischang/self:root-v1.0.0

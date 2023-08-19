@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="utf-8">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, user-scalable=0">
+    <meta name="referrer" content="no-referrer">
+    <title>Kindle Kis Read</title>
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- inject:js -->
+    <!-- endinject -->
+</head>
+<body onload="init()">
+    <div class="global-style"></div>
+    <div class="page index">
+        <div class="content">
+            <div class="article-list" onclick="Index.clickItem(event)"></div>
+        </div>
+        <div class="bar"></div>
+        <div class="control">
+            <div class="left-box">
+                <div class="button" onclick="Router.go('config')">设置</div>
+                <div class="button" onclick="Index.getArticleList()">刷新</div>
+                <div class="button" onclick="Router.go('bookshelf')">书架</div>
+            </div>
+            <div class="right-box">
+                <div class="button" onclick="Index.pagination.pageChange(-1)">&lt;</div>
+                <div class="button" onclick="Index.pagination.pageChange(1)">&gt;</div>
+            </div>
+        </div>
+    </div>
+    <div class="page bookshelf">
+        <div class="content">
+            <div class="book-list" onclick="BookShelf.clickItem(event)"></div>
+        </div>
+        <div class="bar"></div>
+        <div class="control">
+            <div class="left-box">
+                <div class="button" onclick="Router.go('config')">设置</div>
+                <div class="button" onclick="BookShelf.getBookShelf()">刷新</div>
+                <div class="button" onclick="Router.go('index')">首页</div>
+            </div>
+            <div class="right-box">
+                <div class="button" onclick="BookShelf.pagination.pageChange(-1)">&lt;</div>
+                <div class="button" onclick="BookShelf.pagination.pageChange(1)">&gt;</div>
+            </div>
+        </div>
+    </div>
+    <div class="page article">
+        <div class="content">
+            <!--<div class="content-kindle-opt">
+                <div class="opt-top" onclick="Article.clickTop()"></div>
+                <div class="opt-left" onclick="Article.clickLeft()"></div>
+                <div class="opt-right" onclick="Article.clickRight()"></div>
+            </div>-->
+            <div class="content-inner"></div>
+        </div>
+        <div class="bar"></div>
+        <div class="control">
+            <div class="left-box">
+                <div class="button" onclick="Router.go('bookshelf')">书架</div>
+                <div class="button" onclick="Router.go('catalogue')">目录</div>
+                <div class="button" onclick="Router.go('index')">首页</div>
+            </div>
+            <div class="right-box">
+                <div class="button" onclick="Article.pageChange(-1)">&lt;</div>
+                <div class="button" onclick="Article.pageChange(1)">&gt;</div>
+            </div>
+        </div>
+    </div>
+    <div class="page catalogue">
+        <div class="content">
+            <div class="article-list" onclick="Catalogue.clickItem(event)"></div>
+        </div>
+        <div class="current-info"></div>
+        <div class="bar"></div>
+        <div class="control">
+            <div class="left-box">
+                <div class="button" onclick="Router.go('bookshelf')">书架</div>
+                <div class="button" onclick="Router.go('index')">首页</div>
+                <div class="button" onclick="Catalogue.getCatalogue()">刷新</div>
+            </div>
+            <div class="right-box">
+                <div class="button" onclick="Catalogue.pagination.pageChange(-1)">&lt;</div>
+                <div class="button" onclick="Catalogue.pagination.pageChange(1)">&gt;</div>
+            </div>
+        </div>
+    </div>
+    <div class="page config">
+        <div class="content">
+            <div class="form-item">
+                <div class="label">登录状态
+                    <div class="button right" onclick="Store.logout()">登出</div>
+                </div>
+            </div>
+            <div class="form-item">
+                <div class="label">字号</div>
+                <div class="text">
+                    <span class="font-size">2</span>
+                    <span class="font-unit">rem</span>
+                    <div class="button right" onclick="Layout.reset('fontSize')">重置</div>
+                    <div class="button right" onclick="Layout.add('fontSize', -0.1)">-1</div>
+                    <div class="button right" onclick="Layout.add('fontSize', 0.1)">+1</div>
+                    <div class="button right" onclick="Layout.add('fontSize', -0.2)">-2</div>
+                    <div class="button right" onclick="Layout.add('fontSize', 0.2)">+2</div>
+                </div>
+            </div>
+            <div class="form-item">
+                <div class="label">行距</div>
+                <div class="text">
+                    <span class="line-height">2</span>
+                    <span class="line-unit">rem</span>
+                    <div class="button right" onclick="Layout.reset('lineHeight')">重置</div>
+                    <div class="button right" onclick="Layout.add('lineHeight', -0.1)">-1</div>
+                    <div class="button right" onclick="Layout.add('lineHeight', 0.1)">+1</div>
+                    <div class="button right" onclick="Layout.add('lineHeight', -0.2)">-2</div>
+                    <div class="button right" onclick="Layout.add('lineHeight', 0.2)">+2</div>
+                </div>
+            </div>
+            <div class="form-item display">
+                <div class="label">效果展示</div>
+                <div class="text">
+                    <p>测试文本</p>
+                </div>
+            </div>
+        </div>
+        <div class="control">
+            <div class="left-box">
+                <div class="button" onclick="Router.go('bookshelf')">书架</div>
+                <div class="button" onclick="Router.go('index')">首页</div>
+            </div>
+            <div class="right-box">
+                <!-- <div class="button" onclick="">保存</div> -->
+            </div>
+        </div>
+    </div>
+
+
+    <div class="page login">
+        <div class="content" style="text-align: center">
+            <img id="loginQrImg" src="" alt="" style="width: 80%;"/>
+            <div>请使用微信扫码，进行登录。</div>
+        </div>
+        <div class="control" style="text-align: center;">
+            <div class="button" onclick="Config.getLoginQr(true)">获取新的二维码</div>
+        </div>
+    </div>
+
+    <div class="modal-box"></div>
+    <div class="message-box"></div>
+</body>
+</html>
